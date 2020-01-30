@@ -34,15 +34,15 @@ if __name__ == "__main__":
             if item in target_item or len(user_id) == 0:
                 continue
             for uid in user_id:
-                print(rating[(rating.anime_id == aid) & (rating.user_id == uid)])
-                print(rating[(rating.anime_id == item) & (rating.user_id == uid)])
-                print(np.mean(rating[(rating.anime_id == aid) & (rating.rating > 0)].rating.tolist()))
-                rui = rating[(rating.anime_id == aid) & (rating.user_id == uid)].rating.tolist()[0] - np.mean(rating[(rating.anime_id == aid)].rating.tolist())
-                ruj = rating[(rating.anime_id == item) & (rating.user_id == uid)].rating.tolist()[0] - np.mean(rating[(rating.anime_id == item)].rating.tolist())
+#                print(rating[(rating.anime_id == aid) & (rating.user_id == uid)])
+#                print(rating[(rating.anime_id == item) & (rating.user_id == uid)])
+#                print(np.mean(rating[(rating.anime_id == aid) & (rating.rating > 0)].rating.tolist()))
+#                print(rating[(rating.anime_id == item) & (rating.rating > 0)])
+                rui = rating[(rating.anime_id == aid) & (rating.user_id == uid)].rating.tolist()[0] - np.mean(rating[(rating.anime_id == aid) & (rating.rating > 0)].rating.tolist())
+                ruj = rating[(rating.anime_id == item) & (rating.user_id == uid)].rating.tolist()[0] - np.mean(rating[(rating.anime_id == item) & (rating.rating > 0)].rating.tolist())
                 Sum += rui * ruj
                 rui2 += rui ** 2
                 ruj2 += ruj ** 2
-#                print(rating[(rating.anime_id == item) & (rating.user_id == uid)], np.mean(rating[rating.anime_id == item].rating.tolist()))
 
             print(Sum, rui2, ruj2)
             if rui2 != 0 and ruj2 != 0:
