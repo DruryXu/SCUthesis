@@ -20,9 +20,8 @@ def get_dummy(matrix):
 
 if __name__ == "__main__":
     anime = pd.read_csv("~/Data/anime.csv")
-    rating = pd.read_csv("~/Data/rating.csv")
+    rating = pd.read_csv("~/Data/clean_rating2.csv")
 
-    print(anime.head())
     users = list(set(rating.user_id.tolist()))
     items = [i for i in range(len(set(rating.anime_id.tolist())))]
     
@@ -35,6 +34,7 @@ if __name__ == "__main__":
     P = np.array([[random.random() * k for i in range(F)] for j in range(len(set(user_item_matrix[:, 0])))])
     Q = np.array([[random.random() * k for i in range(len(set(user_item_matrix[:, 1])))] for j in range(F)])
 
+    print(user_item_matrix)
     print(n)
     #gradient descent
     for step in range(max_iter):

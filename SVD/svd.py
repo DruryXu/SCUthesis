@@ -16,7 +16,7 @@ def compress(data):
     return data
 
 if __name__ == "__main__":
-    rating = pd.read_csv("~/Data/rating.csv")
+    rating = pd.read_csv("~/Data/clean_rating2.csv")
 
     data = compress(rating[rating.rating > 0].values)
     n_users = rating.user_id.nunique()
@@ -33,8 +33,10 @@ if __name__ == "__main__":
     from scipy.sparse.linalg import svds
     
     print(train_data_matrix.shape)
-    u, s, vt = np.linalg.svd(train_data_matrix)
+    u, s, vt = svds(train_data_matrix, k = 20)
     s_diag_matrix = np.diag(s)
     svd_prediction = np.dot(np.dot(u, s_diag_matrix), vt)
 
+    svd_prediction[svd_prediction < 0] = 0
+    svd_prediction[svd_prediction > 10] = 10
     print(svd_prediction)
