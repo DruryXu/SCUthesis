@@ -8,6 +8,7 @@ from surprise.model_selection import cross_validate
 from surprise import NormalPredictor
 from surprise import KNNWithMeans
 if __name__ == "__main__":
+
     rating = pd.read_csv("~/Data/clean_rating2.csv")
     reader = Reader(rating_scale=(-1, 10))
     data = Dataset.load_from_df(rating, reader)
